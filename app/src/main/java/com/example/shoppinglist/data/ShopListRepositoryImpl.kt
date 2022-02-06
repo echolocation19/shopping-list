@@ -8,7 +8,7 @@ import java.lang.RuntimeException
 
 object ShopListRepositoryImpl : ShopListRepository {
 
-    private var shopList = mutableListOf<ShopItem>()
+    private var shopList = sortedSetOf<ShopItem>({ p1, p2 -> p1.id.compareTo(p2.id) })
 
     private val shopListLiveData = MutableLiveData<List<ShopItem>>()
 
