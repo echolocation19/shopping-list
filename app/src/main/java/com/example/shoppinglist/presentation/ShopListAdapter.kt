@@ -8,7 +8,6 @@ import com.example.shoppinglist.domain.ShopItem
 
 class ShopListAdapter: ListAdapter<ShopItem, ViewHolder>(ShopItemDiffCallback()) {
 
-
     var onLongClickListener: ((ShopItem) -> Unit)? = null
     var onClickListener: ((ShopItem) -> Unit)? = null
 
