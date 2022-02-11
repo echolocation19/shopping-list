@@ -1,46 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="4dp"
-    app:cardCornerRadius="4dp"
-    app:cardElevation="4dp"
-    app:cardUseCompatPadding="true">
-
-    <LinearLayout
+<layout>
+    <data>
+        <variable
+            name="shopItem"
+            type="com.example.shoppinglist.domain.ShopItem" />
+    </data>
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:background="@color/purple_200"
-        >
+        android:layout_margin="4dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true">
 
-        <TextView
-            android:id="@+id/tvName"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="Paper"
-            />
+            android:background="@color/purple_200"
+            android:orientation="horizontal"
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tvCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="1"
-            />
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="@{shopItem.name}"
+                tools:text="Paper" />
 
+            <TextView
+                android:id="@+id/tvCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="@{String.valueOf(shopItem.count)}"
+                tools:text="1" />
 
-    </LinearLayout>
+        </LinearLayout>
 
-
-
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+</layout>

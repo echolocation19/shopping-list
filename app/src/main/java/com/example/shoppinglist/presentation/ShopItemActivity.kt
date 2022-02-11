@@ -4,14 +4,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.widget.Button
-import android.widget.EditText
-import androidx.activity.viewModels
 import com.example.shoppinglist.R
 import com.example.shoppinglist.domain.ShopItem.Companion.UNDEFINED_ID
-import com.google.android.material.textfield.TextInputLayout
 
 class ShopItemActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedListener {
 
@@ -57,7 +51,6 @@ class ShopItemActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinished
         private const val MODE_EDIT = "mode_edit"
         private const val MODE_ADD = "mode_add"
         private const val MODE_UNKNOWN = ""
-        private const val ERROR_MESSAGE = "Invalid value"
 
         fun newIntentAddItem(context: Context): Intent {
             val intent = Intent(context, ShopItemActivity::class.java)
