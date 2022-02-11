@@ -1,9 +1,13 @@
-package com.example.shoppinglist.presentation
+package com.example.shoppinglist.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.ListAdapter
 import com.example.shoppinglist.R
+import com.example.shoppinglist.databinding.ItemShopDisabledBinding
+import com.example.shoppinglist.databinding.ItemShopEnabledBinding
 import com.example.shoppinglist.domain.ShopItem
 
 class ShopListAdapter: ListAdapter<ShopItem, ViewHolder>(ShopItemDiffCallback()) {
@@ -24,19 +28,31 @@ class ShopListAdapter: ListAdapter<ShopItem, ViewHolder>(ShopItemDiffCallback())
             VIEW_TYPE_DISABLED -> R.layout.item_shop_disabled
             else -> throw RuntimeException("Unknown view type $viewType")
         }
-        val view = LayoutInflater.from(parent.context).inflate(layout, parent, false)
-        return ViewHolder(view)
+        val binding = DataBindingUtil.inflate<ViewDataBinding>(
+            LayoutInflater.from(parent.context),
+            layout,
+            parent,
+            false
+        )
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val binding = holder.binding
         val shopItem = getItem(position)
-        holder.tvName.text = shopItem.name
-        holder.tvCount.text = shopItem.count.toString()
-        holder.view.setOnLongClickListener {
+        when (binding) {
+            is ItemShopDisabledBinding -> {
+                binding.shopItem = shopItem
+            }
+            is ItemShopEnabledBinding -> {
+                binding.shopItem = shopItem
+            }
+        }
+        binding.root.setOnLongClickListener {
             onLongClickListener?.invoke(shopItem)
             true
         }
-        holder.view.setOnClickListener {
+        binding.root.setOnClickListener {
             onClickListener?.invoke(shopItem)
         }
 
